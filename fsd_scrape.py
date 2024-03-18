@@ -1,121 +1,108 @@
-import requests
 from bs4 import BeautifulSoup
+import requests
 from urllib.parse import urljoin
 import json
+home_url = 'https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/home.page'
 
-# Constants
-BASE_URL = 'https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/home.page'
-CATEGORY_BLOCK_CLASS = 'category-block'
-CATEGORY_URL_CLASS = 'caticon_'
-RESULT_HIT_CONTAINER_ID = 'resultHitContainer'
-RESULT_HIT_CLASS = 'result_hit'
-
-def extract_organization_details(base_url, a_tag_url):
-    url = urljoin(base_url, a_tag_url)
-    response = requests.get(url)
+def extract_category_details(home_url):
+    response = requests.get(home_url)
     soup = BeautifulSoup(response.text, 'html.parser')
+    category_details = []
 
-    details = {}
-    venue_section = soup.find(class_='field_section service_venue')
-    if venue_section:
-        name_element = venue_section.find('dt', string='Name')
-        if name_element:
-            name = name_element.find_next_sibling('dd')
-            if name:
-                details['Name'] = name.text.strip()
+    # Find all div elements with class 'category-block'
+    category_blocks = soup.find_all('div', class_='category-block')
 
-        address_element = venue_section.find('dt', string='Address')
-        if address_element:
-            address = ', '.join([span.text.strip() for span in address_element.find_next_sibling('dd').find_all('span')])
-            details['Address'] = address
+    # Loop through each category block
+    for block in category_blocks:
+        category_info = {}
+        # Find the first 'a' tag within the category block
+        a_tag = block.find('a')
+        # Extract the 'href' attribute from the 'a' tag
+        category_info['url'] = urljoin(home_url, a_tag.get('href'))
+        
+        # Find the 'span' element with class 'p-3' within the category block
+        span_element = block.find('span', class_='p-3')
+        # Extract the text from the span element
+        category_info['name'] = span_element.get_text(strip=True)
 
-        postcode_element = venue_section.find('dt', string='Postcode')
-        if postcode_element:
-            postcode = postcode_element.find_next_sibling('dd')
-            if postcode:
-                details['Postcode'] = postcode.text.strip()
+        category_details.append(category_info)
 
-    # Extract description text and clean it
-    description_text = soup.find(class_='description_text')
-    if description_text:
-        description = description_text.text.strip().replace('\n', ' ').replace('\u00a0', ' ')
-        details['Description'] = description
+    return category_details
 
-    details['URL'] = urljoin(base_url, a_tag_url)  # Add URL to details
-
-    return details
-
-
-# Function to scrape details from each category URL
-def scrape_category(category_url, category_title):
+def extract_subcategory_urls(category_url):
     response = requests.get(category_url)
     soup = BeautifulSoup(response.text, 'html.parser')
+    subcategory_urls = []
 
-    container = soup.find(id=RESULT_HIT_CONTAINER_ID)
-    data = []
-    if container:
-        result_hits = container.find_all(class_=RESULT_HIT_CLASS)
+    # Find all links to subcategories
+    subcategory_links = soup.select('h3.mb-2 a')
+    for link in subcategory_links:
+        subcategory_urls.append(urljoin(category_url, link['href']))
 
-        for hit in result_hits:
-            h4_tag = hit.find('h4')
-            a_tag = h4_tag.find('a')
-            a_tag_url = a_tag['href']
-            text = a_tag.text.strip()
+    return subcategory_urls
 
-            org_details = extract_organization_details(category_url, a_tag_url)
-            if org_details:
-                org_details['Name'] = text
-                org_details['Category'] = category_title
-                data.append(org_details)
+def extract_subcategory_details(subcategory_url):
+    response = requests.get(subcategory_url)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
 
-        next_page_link = soup.find('a', class_='next-page')
-        if next_page_link:
-            next_page_url = urljoin(category_url, next_page_link['href'])
-            data.extend(scrape_category(next_page_url, category_title))
+        # Find the details you want to extract
+        name = soup.find('h1', class_='mb-2').text.strip()
+        description = soup.find('p').text.strip()
+        address_element = soup.find('dt', string='Address')
+        address = address_element.find_next_sibling('dd').text.strip() if address_element else None
+        postcode_element = soup.find('dt', string='Postcode')
+        postcode = postcode_element.find_next_sibling('dd').find('p').text.strip() if postcode_element else None
 
-    return data
+        return {
+            "Name": name,
+            "Description": description,
+            "Address": address,
+            "Postcode": postcode,
+            "URL": subcategory_url
+        }
+    else:
+        print(f"Failed to fetch URL: {subcategory_url}")
+        return None
 
+def scrape_subcategories(category_info):
+    print("Scraping data for category:", category_info['name'])
+    scraped_data = []
+    # Scrape subcategories from all pages
+    page_number = 0
+    while True:
+        page_url = f"{category_info['url']}&sr={page_number * 10}"
+        subcategory_urls = extract_subcategory_urls(page_url)
+        if not subcategory_urls:
+            break
+        for subcategory_url in subcategory_urls:
+            subcategory_details = extract_subcategory_details(subcategory_url)
+            if subcategory_details:
+                data = {
+                    "Category": category_info['name'],
+                    "Name": subcategory_details['Name'],
+                    "Description": subcategory_details['Description'],
+                    "Address": subcategory_details['Address'],
+                    "Postcode": subcategory_details['Postcode'],
+                    "URL": subcategory_details['URL']
+                }
+                scraped_data.append(data)
+        page_number += 1
+    return scraped_data
 
-# Extract category URLs
-def extract_category_urls(base_url):
-    response = requests.get(base_url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    category_blocks = soup.find_all(class_=CATEGORY_BLOCK_CLASS)
-    category_urls = []
-
-    for block in category_blocks:
-        a_tag = block.find('a', class_=lambda x: x and CATEGORY_URL_CLASS in x)
-        if a_tag:
-            category_urls.append((urljoin(base_url, a_tag['href']), a_tag.text.strip()))
-
-    return category_urls
-
-# Main function
+# Main code
 def main():
-    category_urls = extract_category_urls(BASE_URL)
-    all_data = []
-    for category_url, category_title in category_urls:
-        print("Scraping data for category:", category_title)
-        category_data = scrape_category(category_url, category_title)
-        all_data.extend(category_data)
+ category_details = extract_category_details(home_url)
+ scraped_data_all = []
 
-    # Save data to JSON file
-    with open('scraped_data.json', 'w') as json_file:
-        # Preprocess the data to ensure the desired key order
-        processed_data = []
-        for item in all_data:
-            processed_item = {
-                'Category': item['Category'],
-                'Name': item['Name'],
-                'Description': item.get('Description', ''),
-                'Address': item.get('Address', ''),
-                'Postcode': item.get('Postcode', ''),
-                'URL': item['URL']
-            }
-            processed_data.append(processed_item)
+ for category_info in category_details:
+    scraped_data = scrape_subcategories(category_info)
+    scraped_data_all.extend(scraped_data)
 
-        # Dump the processed data to the JSON file
-        json.dump(processed_data, json_file, indent=4, ensure_ascii=False)
+# Save scraped data as JSON
+ with open('scraped_data.json', 'w') as f:
+    json.dump(scraped_data_all, f, indent=4)
 
 if __name__ == "__main__":
     main()
+print("Scraped data saved as scraped_data.json")
