@@ -15561,6 +15561,14 @@
     },
     {
         "Category": "Special Educational Needs and Disabilities",
+        "Name": "Dudley House School",
+        "Description": "Located in Grantham, Dudley House School is an independent, happy, caring School whose enthusiastic staff are dedicated to bringing out the best in every child. Individuality is highly valued and every child is encouraged to develop his/her talents and personality to the full. Good manners, behaviour, sensitivity and confidence displayed by our children are often commented upon.",
+        "Address": "1 Dudley Road\nGrantham\nLincolnshire",
+        "Postcode": "NG31 9AA",
+        "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=EtYd70QNF5w&familychannel=2"
+    },
+    {
+        "Category": "Special Educational Needs and Disabilities",
         "Name": "Dudley House School - After School Club",
         "Description": "Dudley House School has a strong Christian ethos, which is used effectively to help children develop a healthy understanding of the important principles of love, friendship and mutual respect. A wide variety of teaching methods are used to allow all children equal chance to access learning and develop new skills. Staff work at the children's level and make good use of explanations, demonstrations and praise to encourage children towards their achievements.Intake is usually in September each year, but we are happy to consider entry at other times.Our nursery provision is limited to children whose 4th birthday falls in the academic year September to August in which they enter the school.",
         "Address": "1 Dudley Road\nGrantham\nLincolnshire",
@@ -15582,6 +15590,14 @@
         "Address": "Dunholme\nLincoln\nLincolnshire",
         "Postcode": "LN2",
         "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=dhiAZx4cwpQ&familychannel=2"
+    },
+    {
+        "Category": "Special Educational Needs and Disabilities",
+        "Name": "Dunholme Kids Club - Breakfast Club",
+        "Description": "Dunholme afterschool club has now extended its services to include a breakfast club. The same friendly staff run both sessions. The numbers for the Breakfast club are not constant due to us being a new service within the community. We have plenty of spaces at the moment.",
+        "Address": "Dunholme\nLincoln\nLincolnshire",
+        "Postcode": "LN2",
+        "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=jfHumDF7A6k&familychannel=2"
     },
     {
         "Category": "Special Educational Needs and Disabilities",
@@ -22705,27 +22721,11 @@
     },
     {
         "Category": "Special Educational Needs and Disabilities",
-        "Name": "Team Around the Child",
-        "Description": "Children and families may need extra support at different times in their lives.",
-        "Address": "N/A,\u00a0N/A\nN/A\nN/A",
-        "Postcode": null,
-        "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=m44ED-Yz-70&familychannel=2"
-    },
-    {
-        "Category": "Special Educational Needs and Disabilities",
         "Name": "Telecare Choice",
         "Description": "Telecare Choice is a leading provider of telecare services in the UK. We believe that Telecare should be affordable and available to all and that the service delivered should be of the highest possible standard.",
         "Address": "40,\u00a0Bowthorpe Employment Area\nNorwich\nNorfolk",
         "Postcode": "NR5 9JB",
         "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=jS_dgyHhSKs&familychannel=2"
-    },
-    {
-        "Category": "Special Educational Needs and Disabilities",
-        "Name": "Teresa Betts Childminding Services",
-        "Description": "Childminder provides a fun, warm, friendly and safe environment in which children can play and learn. Encourages children to be active learners and to make a positive contribution within the community.",
-        "Address": "Ruskington\nSleaford\nLincolnshire",
-        "Postcode": "NG34",
-        "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=jpRXHGVikf4&familychannel=2"
     },
     {
         "Category": "Special Educational Needs and Disabilities",
@@ -22742,14 +22742,6 @@
         "Address": "Rainbow Horses Learning CentreLangar Lane\nHarby\nMelton Mowbray\nLeicestershire",
         "Postcode": "LE14 4BL",
         "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=hJ2z-5fD_gk&familychannel=2"
-    },
-    {
-        "Category": "Special Educational Needs and Disabilities",
-        "Name": "The Thomas Centre",
-        "Description": "We provide overnight self-catering short breaks for children and young people who have Autism and complex needs, and their families. The Thomas Centre is a safe environment and non-judgmental. We have lots of activities for the whole family, including a heated indoor swimming pool, a multi-room with gym equipment and a sensory trolley. Outdoor and indoor play areas, ground level trampoline and peddle go-karts with a go-kart track.",
-        "Address": "Westfield\nCovenham St Bartholomew\nLouth\nLincs",
-        "Postcode": "LN11 0PB",
-        "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=JsXZq7Ly4YE&familychannel=2"
     },
     {
         "Category": "Special Educational Needs and Disabilities",
