@@ -22721,11 +22721,27 @@
     },
     {
         "Category": "Special Educational Needs and Disabilities",
+        "Name": "Team Around the Child",
+        "Description": "Children and families may need extra support at different times in their lives.",
+        "Address": "N/A,\u00a0N/A\nN/A\nN/A",
+        "Postcode": null,
+        "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=m44ED-Yz-70&familychannel=2"
+    },
+    {
+        "Category": "Special Educational Needs and Disabilities",
         "Name": "Telecare Choice",
         "Description": "Telecare Choice is a leading provider of telecare services in the UK. We believe that Telecare should be affordable and available to all and that the service delivered should be of the highest possible standard.",
         "Address": "40,\u00a0Bowthorpe Employment Area\nNorwich\nNorfolk",
         "Postcode": "NR5 9JB",
         "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=jS_dgyHhSKs&familychannel=2"
+    },
+    {
+        "Category": "Special Educational Needs and Disabilities",
+        "Name": "Teresa Betts Childminding Services",
+        "Description": "Childminder provides a fun, warm, friendly and safe environment in which children can play and learn. Encourages children to be active learners and to make a positive contribution within the community.",
+        "Address": "Ruskington\nSleaford\nLincolnshire",
+        "Postcode": "NG34",
+        "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=jpRXHGVikf4&familychannel=2"
     },
     {
         "Category": "Special Educational Needs and Disabilities",
@@ -22742,6 +22758,14 @@
         "Address": "Rainbow Horses Learning CentreLangar Lane\nHarby\nMelton Mowbray\nLeicestershire",
         "Postcode": "LE14 4BL",
         "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=hJ2z-5fD_gk&familychannel=2"
+    },
+    {
+        "Category": "Special Educational Needs and Disabilities",
+        "Name": "The Thomas Centre",
+        "Description": "We provide overnight self-catering short breaks for children and young people who have Autism and complex needs, and their families. The Thomas Centre is a safe environment and non-judgmental. We have lots of activities for the whole family, including a heated indoor swimming pool, a multi-room with gym equipment and a sensory trolley. Outdoor and indoor play areas, ground level trampoline and peddle go-karts with a go-kart track.",
+        "Address": "Westfield\nCovenham St Bartholomew\nLouth\nLincs",
+        "Postcode": "LN11 0PB",
+        "URL": "https://lincolnshire.fsd.org.uk/kb5/lincs/fsd/service.page?id=JsXZq7Ly4YE&familychannel=2"
     },
     {
         "Category": "Special Educational Needs and Disabilities",
